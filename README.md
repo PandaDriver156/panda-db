@@ -1,15 +1,13 @@
+#panda-db
+
 panda-db is a very simple json based database that is still under development.
 
-<h1> 
-    Installation
-</h1>
 
+# Installation
 <code> npm i panda-db </code>
 
-<h1>
-    Options
-</h1>
 
+# Options
 <table>
     <thead>
         <tr>
