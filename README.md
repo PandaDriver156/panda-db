@@ -1,4 +1,4 @@
-panda-db is a very simple json based database that is still under heavy development.
+panda-db is a very simple json based database that is still under development.
 
 <h1> 
     Installation
