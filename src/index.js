@@ -4,9 +4,12 @@ let data = {};
 class PandaDB {
 
   constructor(options = {}) {
-      options.name = String(options.name || 'PandaDB');
-    options.dir = options.dir ? String(options.dir) : './database';
+    options.name = String(options.name || 'PandaDB');
+    options.dir = options.dir ? String(options.dir) : './pandaDB';
+    options.backup = Boolean(options.backups);
+    if(options.backup) options.backupInterval = options.backupInterval || 60;
     if(!fs.existsSync(options.dir)) fs.mkdirSync(options.dir);
+    if(!fs.existsSync(`${options.dir}/backups`) && options.backup) fs.mkdirSync(`${options.dir}/backups`);
     Object.defineProperties(this, {
       size: {
         value: () => Object.keys(data).length
