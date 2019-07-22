@@ -35,6 +35,15 @@ panda-db is a very simple json based database that is still under development.
             <td>Directory path where the json file will be stored</td>
             <td><code>./pandaDB</code></td>
         </tr>
+        <tr>
+            <td>options.backup</td>
+            <td>boolean</td>
+            <td>Whether to create a backup file</td>
+            <td><code>true</code></td>
+        </tr>
+        <tr>
+             <td>options.backupInterval</td>
+        </tr>
     </tbody>
 </table>
 
@@ -50,8 +59,13 @@ panda-db is a very simple json based database that is still under development.
     <tbody>
         <tr>
             <th>get(property, [path])</th>
-            <td>Gets a property from the database. <code>path</code> can be used if the property is an object </td>
+            <td>Gets a property from the database. <code>path</code> can be used if <code>property</code> is an object</td>
             <td>Value of <code>property</code></td>
+        </tr>
+        <tr>
+            <th>set(property, value, [path])</th>
+            <td>Changes the value of the specified element. <code>path</code> can be used if <code>property</code> is an object</td>
+            <td><code>pandaDB</code></td>
         </tr>
     </tbody>
 </table>
