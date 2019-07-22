@@ -2,12 +2,11 @@
 
 panda-db is a very simple json based database that is still under development.
 
-
 # Installation
 <code> npm i panda-db </code>
 
 
-# Constructor options
+# Options
 <table>
     <thead>
         <tr>
@@ -39,3 +38,19 @@ panda-db is a very simple json based database that is still under development.
     </tbody>
 </table>
 
+# Methods
+<table>
+    <thead>
+        <tr>
+            <th>Method</th>
+            <th>Description</th>
+            <th>Returns</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>get(property, [path])</th>
+            <th>Gets a property from the database. path can be used if the property is an object
+        </tr>
+    </tbody>
+</table>
