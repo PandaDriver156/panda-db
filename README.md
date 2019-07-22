@@ -43,6 +43,9 @@ panda-db is a very simple json based database that is still under development.
         </tr>
         <tr>
              <td>options.backupInterval</td>
+             <td>number</td>
+             <td>In seconds, Delay to update the backup file</td>
+             <td><code>60</code></td>
         </tr>
     </tbody>
 </table>
