@@ -7,7 +7,7 @@ panda-db is a very simple json based database that is still under development.
 <code> npm i panda-db </code>
 
 
-# Options
+# Constructor options
 <table>
     <thead>
         <tr>
