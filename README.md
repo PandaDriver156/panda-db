@@ -49,9 +49,9 @@ panda-db is a very simple json based database that is still under development.
     </thead>
     <tbody>
         <tr>
-            <th>get(property, [path])</th>
-            <th>Gets a property from the database. <code>path</code> can be used if the property is an object </th>
-            <th>Value of <code>property</code></th>
+            <td>get(property, [path])</td>
+            <td>Gets a property from the database. <code>path</code> can be used if the property is an object </td>
+            <td>Value of <code>property</code></td>
         </tr>
     </tbody>
 </table>
