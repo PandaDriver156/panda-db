@@ -57,7 +57,7 @@ class PandaDB {
     return data[prop];
   }
   
-  get(prop, path) {
+  get (prop, path) {
     if(!prop) throw new Error("Prop missing");
     if(path) {
        if (data[prop]) return data[prop][path];
@@ -66,7 +66,7 @@ class PandaDB {
   }
   
   ensure (prop, value) {
-    if(!prop || !value) throw new Error("Prop or value missing");
+    if(!prop || !value) throw new Error("Property or value missing");
     prop = String(prop);
     if(!data[prop]) {
       data[prop] = value;
@@ -76,7 +76,7 @@ class PandaDB {
   }
   
   delete (prop, path) {
-    if(!prop) throw new Error("Prop missing");
+    if(!prop) throw new Error("Property missing");
     prop = String(prop);
     path = String(path);
     if(data[prop]) return delete data[prop];
