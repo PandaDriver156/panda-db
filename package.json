@@ -2,12 +2,12 @@
   "name": "panda-db",
   "version": "0.0.3",
   "description": "A very simple, json based database",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/PandaDriver156/panda-db.git"
+    "url": "https://github.com/PandaDriver156/panda-db"
   },
   "keywords": [
     "database",
