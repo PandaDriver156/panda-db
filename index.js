@@ -11,7 +11,7 @@ class PandaDB {
       options.backupInterval = options.backupInterval || 60;
 
       setInterval(function () {
-        fs.writeFileSync(`${options.dir}/backups/${options.name}.json`, JSON.stringify(data, null, 2))
+        fs.writeFileSync(`${options.dir}/backups/${options.name}.txt`, JSON.stringify(data, null, 2))
       }, options.backupInterval * 1000); 
 
       if(!fs.existsSync(`${options.dir}/backups`)) fs.mkdirSync(`${options.dir}/backups`);
