@@ -33,9 +33,13 @@ class PandaDB {
     
     
   save() {
-    fs.writeFileSync(`${process.cwd()}/${this.options.dir}/${this.options.name}.json`, JSON.stringify(data).split('},').join('},\n'));
-    data = require(`${process.cwd()}/${this.options.dir}/${this.options.name}.json`);
-    return data;
+    try {
+      fs.writeFileSync(`${process.cwd()}/${this.options.dir}/${this.options.name}.json`, JSON.stringify(data).split('},').join('},\n'));
+      data = require(`${process.cwd()}/${this.options.dir}/${this.options.name}.json`);
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   
