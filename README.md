@@ -22,19 +22,19 @@ panda-db is a very simple json based database that is still under development.
             <td>options</td>
             <td>object</td>
             <td>Options for the database</td>
-            <td><code>{}</td>
+            <td><code>{}</code></td>
         </tr>
         <tr>
             <td>options.name</td>
             <td>string</td>
             <td>The name of the json file</td>
-            <td><code>PandaDB</td>
+            <td><code>PandaDB</code></td>
         </tr>
         <tr>
             <td>options.dir</td>
             <td>string</td>
             <td>Directory path where the json file will be stored</td>
-            <td><code>./pandaDB</td>
+            <td><code>./pandaDB</code></td>
         </tr>
     </tbody>
 </table>
