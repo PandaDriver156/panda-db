@@ -6,10 +6,20 @@ class PandaDB {
   constructor(options = {}) {
     options.name = String(options.name || 'PandaDB');
     options.dir = options.dir ? String(options.dir) : './pandaDB';
-    options.backup = Boolean(options.backups);
-    if(options.backup) options.backupInterval = options.backupInterval || 60;
+    options.backup = Boolean(options.backups || true);
+    if(options.backup) {
+      options.backupInterval = options.backupInterval || 60;
+
+      setInterval(function () {
+        fs.writeFileSync(`${options.dir}/backups/${options.name}.json`, JSON.stringify(data, null, 2))
+      }, options.backupInterval * 1000); 
+
+      if(!fs.existsSync(`${options.dir}/backups`)) fs.mkdirSync(`${options.dir}/backups`);
+    }
+
+
     if(!fs.existsSync(options.dir)) fs.mkdirSync(options.dir);
-    if(!fs.existsSync(`${options.dir}/backups`) && options.backup) fs.mkdirSync(`${options.dir}/backups`);
+
     Object.defineProperties(this, {
       size: {
         value: () => Object.keys(data).length
@@ -27,13 +37,13 @@ class PandaDB {
         value: require('./package.json').version
       }
     });
+    
     try {
       data = require(`${process.cwd()}/${options.dir}/${options.name}.json`);
     } catch {
       this.save();
     }
   }
-    
     
   save() {
     try {
@@ -44,7 +54,6 @@ class PandaDB {
       return false;
     }
   }
-
   
   set(prop, value, path) {
     if(!prop || !value) throw new Error("Property or value missing");
@@ -57,14 +66,14 @@ class PandaDB {
     } else data[prop] = value;
     
     this.save();
-    return data[prop];
+    return this;
   }
   
   get (prop, path) {
-    if(!prop) throw new Error("Prop missing");
+    if(!prop) throw new Error("Property missing");
     if(path) {
        if (data[prop]) return data[prop][path];
-        throw new Error(`The property ${prop} does not exist in the ${this.options.name} Database`);
+        throw new Error(`The property ${prop} does not exist in the PandaDB: ${this.options.name}`);
     } else return data[prop];
   }
   
