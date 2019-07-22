@@ -7,10 +7,6 @@ class PandaDB {
       options.name = String(options.name || 'PandaDB');
     options.dir = options.dir ? String(options.dir) : './database';
     if(!fs.existsSync(options.dir)) fs.mkdirSync(options.dir);
-    /*Object.defineProperty(this, "size", { value: () => Object.keys(data).length});
-    Object.defineProperty(this, "options", { value: options});
-    Object.defineProperty(this, "indexes", { value: () => Object.keys(data)});
-    Object.defineProperty(this, "data", { value: () => data}); */
     Object.defineProperties(this, {
       size: {
         value: () => Object.keys(data).length
