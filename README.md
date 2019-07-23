@@ -9,8 +9,8 @@ npm i panda-db
 //Using yarn
 yarn add panda-db
 </pre>
+## For veta
 <pre>
-## For beta
 //Using npm
 npm i PandaDriver156/panda-db
 
