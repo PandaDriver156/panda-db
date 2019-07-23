@@ -1,174 +1,115 @@
-const fs = require('fs');
-let data = {};
-const PandaDBError = require('./error.js');
+panda-db is a very simple json based database that is still under development.
 
-class PandaDB {
+# Installation
+## For stable
+<pre>
+//Using npm
+npm i panda-db
 
-/**
- * Creates a new pandaDB
- * @param {Object} options Options for this pandaDB, optional.
- * @param {String} options.name The name of the pandaDB and the stored json file.
- * @param {String} options.dir Directory path where the json file will be stored. Defaults to `./pandaDB`.
- * @param {Boolean} options.autoSave Whether to automatically update the json file when changes were made.
- * 
- * @example
- * const PandaDB = require('panda-db');
- * 
- * const DB = new PandaDB({
- *  name: "testing",
- *  dir: "./database"
- * });
- */
+//Using yarn
+yarn add panda-db
+</pre>
+## For beta
+<pre>
+//Using npm
+npm i PandaDriver156/panda-db
 
-  constructor(options = {}) {
-    options.name = String(options.name || 'PandaDB');
-    options.dir = options.dir ? String(options.dir) : './database';
-    options.autoSave = Boolean(options.autoSave ? options.autoSave : true);
+//Using yarn
+yarn add PandaDriver156/panda-db
+</pre>
+# Constructor options
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>options</td>
+            <td>object</td>
+            <td>Options for the database</td>
+            <td><code>{}</code></td>
+        </tr>
+        <tr>
+            <td>options.name</td>
+            <td>string</td>
+            <td>The name of the json file</td>
+            <td><code>PandaDB</code></td>
+        </tr>
+        <tr>
+            <td>options.dir</td>
+            <td>string</td>
+            <td>Directory path where the json file will be stored</td>
+            <td><code>./pandaDB</code></td>
+        </tr>
+        <tr>
+            <td>options.backup</td>
+            <td>boolean</td>
+            <td>Whether to create a backup file</td>
+            <td><code>false</code></td>
+        </tr>
+        <tr>
+             <td>options.backupInterval</td>
+             <td>number</td>
+             <td>In seconds, Delay to update the backup file</td>
+             <td><code>60</code></td>
+        </tr>
+    </tbody>
+</table>
 
-    if(!fs.existsSync(options.dir)) fs.mkdirSync(options.dir);
-
-    Object.defineProperties(this, {
-      options: {
-        value: options
-      },
-      version: {
-        value: require('../package.json').version
-      }
-    });
-    
-    try {
-      data = require(`${process.cwd()}/${options.dir}/${options.name}.json`);
-    } catch {
-      this.save();
-    }
-  }
-   
-  
-/**
- * Updates the json file. This function doesn't need to be called if the `autoSave` option is true.
- * @returns {Boolean} Whether the save was successful
- */
-  save () {
-    try {
-      fs.writeFileSync(`${process.cwd()}/${this.options.dir}/${this.options.name}.json`, JSON.stringify(data, null, 2));
-      data = require(`${process.cwd()}/${this.options.dir}/${this.options.name}.json`);
-      return true;
-    } catch {
-      return false;
-    }
-  }
- 
- /**
-  * Changes the value of the specified element
-  * @param {String} key The key to add/change in the pandaDB
-  * @param {*} value (new) value of the key
-  * @param {String} path Optional, the path to modify inside `key` if its value is: object
-  * @returns {PandaDB} The current pandaDB.
-  * @example
-  * pandaDB.set('rating', 'pandaDB is easy to use!');
-  * 
-  * pandaDB.set("anObject", {});
-  * 
-  * pandaDB.set("anObject", "A value", "objectPath");
-  */ 
-  set (key, value, path) {
-    if(key == undefined || value == undefined) throw new PandaDBError("key or value missing");
-    key = String(key);
-    path = path ? String(path) : undefined;
-    if(path) {
-      path = String(path);
-     if(!data[key]) PandaDBError(`The property "${key}" does not exist in the PandaDB: ${this.options.name}`);
-      data[key][path] = value;
-    } else data[key] = value;
-    
-    if(this.options.autoSave) this.save();
-    return this;
-  }
-  
-  /**
-   * Gets a property from the pandaDB.
-   * @param {String} prop The property to get from the pandaDB
-   * @param {String} path Optional, can be used if `prop` is an object.
-   * @returns {*} Obtained value of `prop` or undefined if it doesn't exist.
-   */
-  get (prop, path) {
-    if(prop == undefined) throw new PandaDBError("Property missing");
-    prop = String(prop);
-    if(path) {
-      path = String(path);
-      if (data[prop]) return data[prop][path];
-      throw new PandaDBError(`The property "${prop}" does not exist in the PandaDB: ${this.options.name}`);
-    } 
-    else return data[prop];
-  }
-
-
-  /**
-   * Checks if a property exists in the pandaDB.
-   * @param {String} property The key to check
-   * @param {String} path Optional, can be used if `property` is an object.
-   * @return {Boolean} Whether the property exists
-   */
-  has (property, path) {
-    if(property == undefined) throw new PandaDBError("Property missing");
-    property = String(property);
-    if(path) {
-      path = String(path);
-      if (data[property]) return data[property][path] != undefined;
-      throw new PandaDBError(`The property "${property}" does not exist in the PandaDB: ${this.options.name}`);
-    } 
-    else return data[property] != undefined;
-  }
-  
-/**
- * Ensures that `prop` exists.
- * @param {*} prop The property to ensure in the pandaDB
- * @param {*} defaultValue The value to be assigned to `prop` is it doesn't exists in the pandaDB
- * @returns {*} `prop`'s value.
- */
-  ensure (prop, defaultValue) {
-    if(prop == undefined || defaultValue == undefined) throw new PandaDBError("Property or value missing");
-    prop = String(prop);
-    if(data[prop] == undefined) {
-      data[prop] = defaultValue;
-      if(this.options.autoSave) this.save();
-    }
-    return data[prop];
-  }
-
-  /**
-   * Deletes a key.
-   * @param {String} prop 
-   * @param {*} path 
-   * @returns {Boolean} Whether the delete happened.
-   */
-  delete (prop, path) {
-    if(!prop) throw new PandaDBError("Property missing");
-    prop = String(prop);
-    path = path ? String(path) : null;
-    if(data[prop]) {
-      const deleted = delete data[prop];
-      if(this.options.autoSave) this.save();
-      return deleted;
-    }
-    else return false;
-  }
-
-  /**
-   * Obtains all keys from the pandaDB.
-   * @returns {Array<string>} Array of indexes in the pandaDB.
-   */
-  get keys () {
-    return Object.keys(data);
-  }
-  
-/**
- * Amount of keys stored in the pandaDB.
- * @returns {Number} The size of the pandaDB.
- */
-  get size () {
-    return Object.keys(data).length;
-  }
-};
-
-module.exports = PandaDB;
+# Properties
+<table>
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+            <th>Returns</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>get(property, [path])</th>
+            <td>Gets a property from the database. <code>path</code> can be used if <code>property</code> is an object</td>
+            <td>Value of <code>property</code></td>
+        </tr>
+        <tr>
+            <th>set(property, value, [path])</th>
+            <td>Changes the value of the specified element. <code>path</code> can be used if <code>property</code> is an object</td>
+            <td><code>pandaDB</code></td>
+        </tr>
+        <tr>
+            <th>delete(property, path)</th>
+            <td>Deletes a key</td>
+            <td><code>Boolean</code> (whether the delete was successful)</td>
+        </tr>
+        <tr>
+            <th>ensure(property, defaultValue)</th>
+            <td>Ensures that <code>property</code> exists</td>
+            <td><code>property</code>'s value</td>
+        </tr>
+        <tr>
+            <th>has(key, path)</th>
+            <td>Checks if a property exists in the pandaDB</td>
+            <td><code>Boolean</code> Whether the specified element exists</td>
+        </tr>
+        <tr>
+            <th>save()</th>
+            <td>Updates the json file. This function doesn't need to be called if the <code>autoSave</code> option is true</td>
+            <td><code>Boolean</code> Whether the save was successful</td>
+        </tr>
+        <tr>
+            <th>keys</th>
+            <td>Obtains all keys from the pandaDB</td>
+            <td><code>Array</code> Array of keys</td>
+        </tr>
+        <tr>
+            <th>size</th>
+            <td>Amount of keys stored in the pandaDB</td>
+            <td><code>Number</code></td>
+        </tr>
+    </tbody>
+</table>
