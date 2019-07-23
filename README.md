@@ -9,7 +9,7 @@ npm i panda-db
 //Using yarn
 yarn add panda-db
 </pre>
-## For veta
+## For beta
 <pre>
 //Using npm
 npm i PandaDriver156/panda-db
@@ -61,11 +61,11 @@ yarn add PandaDriver156/panda-db
     </tbody>
 </table>
 
-# Methods
+# Properties
 <table>
     <thead>
         <tr>
-            <th>Method</th>
+            <th>Property</th>
             <th>Description</th>
             <th>Returns</th>
         </tr>
@@ -95,6 +95,16 @@ yarn add PandaDriver156/panda-db
             <th>save()</th>
             <td>Updates the json file. This function doesn't need to be called if the <code>autoSave</code> option is true</td>
             <td><code>Boolean</code> Whether the save was successful</td>
+        </tr>
+        <tr>
+            <th>keys</th>
+            <td>Obtains all keys from the pandaDB</td>
+            <td><code>Array<string></code> Array of keys</td>
+        </tr>
+        <tr>
+            <th>size</th>
+            <td>Amount of keys stored in the pandaDB</td>
+            <td></td>
         </tr>
     </tbody>
 </table>
