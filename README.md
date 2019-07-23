@@ -92,6 +92,11 @@ yarn add PandaDriver156/panda-db
             <td><code>property</code>'s value</td>
         </tr>
         <tr>
+            <th>has(key, path)</th>
+            <td>Checks if a property exists in the pandaDB</td>
+            <td><code>Boolean</code> Whether the specified element exists</td>
+        </tr>
+        <tr>
             <th>save()</th>
             <td>Updates the json file. This function doesn't need to be called if the <code>autoSave</code> option is true</td>
             <td><code>Boolean</code> Whether the save was successful</td>
