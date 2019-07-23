@@ -99,12 +99,12 @@ yarn add PandaDriver156/panda-db
         <tr>
             <th>keys</th>
             <td>Obtains all keys from the pandaDB</td>
-            <td><code>Array<string></code> Array of keys</td>
+            <td><code>Array</code> Array of keys</td>
         </tr>
         <tr>
             <th>size</th>
             <td>Amount of keys stored in the pandaDB</td>
-            <td></td>
+            <td><code>Number</code></td>
         </tr>
     </tbody>
 </table>
