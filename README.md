@@ -1,11 +1,22 @@
-# Introduction
-
 panda-db is a very simple json based database that is still under development.
 
 # Installation
-For stable: <code>npm i panda-db</code>
+## For stable
+<pre>
+//Using npm
+npm i panda-db
 
-For beta version: <code>npm i PandaDriver156/panda-db</code>
+//Using yarn
+yarn add panda-db
+</pre>
+<pre>
+## For beta
+//Using npm
+npm i PandaDriver156/panda-db
+
+//Using yarn
+yarn add PandaDriver156/panda-db
+</pre>
 # Options
 <table>
     <thead>
@@ -82,7 +93,7 @@ For beta version: <code>npm i PandaDriver156/panda-db</code>
         </tr>
         <tr>
             <th>save()</th>
-            <td>Updates to the json file. This function doesn't need to be called if the <code>autoSave</code> option is true</td>
+            <td>Updates the json file. This function doesn't need to be called if the <code>autoSave</code> option is true</td>
             <td><code>Boolean</code> Whether the save was successful</td>
         </tr>
     </tbody>
