@@ -32,7 +32,7 @@ class PandaDB {
         value: options
       },
       version: {
-        value: require('./package.json').version
+        value: require('../package.json').version
       }
     });
     
@@ -45,7 +45,7 @@ class PandaDB {
    
   
 /**
- * Makes update the json file. This function doesn't need to be called if the `autoSave` option is true.
+ * Updates the json file. This function doesn't need to be called if the `autoSave` option is true.
  * @returns {Boolean} Whether the save was successful
  */
   save () {
