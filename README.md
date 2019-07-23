@@ -17,7 +17,7 @@ npm i PandaDriver156/panda-db
 //Using yarn
 yarn add PandaDriver156/panda-db
 </pre>
-# Options
+# Constructor options
 <table>
     <thead>
         <tr>
