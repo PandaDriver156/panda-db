@@ -3,9 +3,9 @@
 panda-db is a very simple json based database that is still under development.
 
 # Installation
-<code> npm i panda-db </code>
+For stable: <code>npm i panda-db</code>
 
-
+For beta version: <code>npm i PandaDriver156/panda-db</code>
 # Options
 <table>
     <thead>
@@ -39,7 +39,7 @@ panda-db is a very simple json based database that is still under development.
             <td>options.backup</td>
             <td>boolean</td>
             <td>Whether to create a backup file</td>
-            <td><code>true</code></td>
+            <td><code>false</code></td>
         </tr>
         <tr>
              <td>options.backupInterval</td>
@@ -69,6 +69,16 @@ panda-db is a very simple json based database that is still under development.
             <th>set(property, value, [path])</th>
             <td>Changes the value of the specified element. <code>path</code> can be used if <code>property</code> is an object</td>
             <td><code>pandaDB</code></td>
+        </tr>
+        <tr>
+            <th>delete(property, path)</th>
+            <td>Deletes a key </td>
+            <td><code>Boolean (whether the delete was successful)</code></td>
+        </tr>
+        <tr>
+            <th>ensure(property, defaultValue)</th>
+            <td>Ensures that <code>property</code> exists</td>
+            <td><code>property</code>'s value</td>
         </tr>
     </tbody>
 </table>
