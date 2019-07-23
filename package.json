@@ -1,10 +1,8 @@
 {
   "name": "panda-db",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A very simple, json based database",
-  "main": "index.js",
-  "scripts": {
-  },
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/PandaDriver156/panda-db.git"
@@ -16,6 +14,5 @@
   "bugs": {
     "url": "https://github.com/PandaDriver156/panda-db/issues"
   },
-  "author": "PandaDriver",
-  "license": "MIT"
+  "author": "PandaDriver"
 }
