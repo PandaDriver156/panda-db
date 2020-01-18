@@ -1,21 +1,12 @@
 panda-db is a very simple json based database that is still under development.
 
 # Installation
-## For stable
 <pre>
 //Using npm
 npm i panda-db
 
 //Using yarn
 yarn add panda-db
-</pre>
-## For beta
-<pre>
-//Using npm
-npm i PandaDriver156/panda-db
-
-//Using yarn
-yarn add PandaDriver156/panda-db
 </pre>
 # Constructor options
 <table>
