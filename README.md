@@ -1,6 +1,7 @@
-panda-db is a very simple json based database that is still under development.
+panda-db is a very simple json based database
 
 # Installation
+## For stable
 <pre>
 //Using npm
 npm i panda-db
@@ -28,7 +29,7 @@ yarn add panda-db
         <tr>
             <td>options.name</td>
             <td>string</td>
-            <td>The name of the json file</td>
+            <td>The name of the pandaDB and the json file</td>
             <td><code>PandaDB</code></td>
         </tr>
         <tr>
@@ -38,16 +39,10 @@ yarn add panda-db
             <td><code>./pandaDB</code></td>
         </tr>
         <tr>
-            <td>options.backup</td>
+            <td>options.autoSave</td>
             <td>boolean</td>
-            <td>Whether to create a backup file</td>
-            <td><code>false</code></td>
-        </tr>
-        <tr>
-             <td>options.backupInterval</td>
-             <td>number</td>
-             <td>In seconds, Delay to update the backup file</td>
-             <td><code>60</code></td>
+            <td>Whether to automatically update the json file when changes were made</td>
+            <td><code>true</code></td>
         </tr>
     </tbody>
 </table>
