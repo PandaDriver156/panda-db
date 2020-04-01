@@ -11,6 +11,9 @@
     "database",
     "json"
   ],
+  "dependencies": {
+
+  },
   "bugs": {
     "url": "https://github.com/PandaDriver156/panda-db/issues"
   },
