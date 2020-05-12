@@ -1,6 +1,6 @@
 {
   "name": "panda-db",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "description": "A very simple, json based database",
   "main": "src/index.js",
   "repository": {
