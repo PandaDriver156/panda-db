@@ -169,6 +169,6 @@ class PandaDB {
   get size () {
     return Object.keys(data).length;
   }
-};
+}
 
 module.exports = PandaDB;
