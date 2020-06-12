@@ -10,11 +10,10 @@ A very simple, json based database
     * [.keys](#PandaDB+keys) ⇒ <code>array.&lt;string&gt;</code>
     * [.size](#PandaDB+size) ⇒ <code>number</code>
     * [.save()](#PandaDB+save) ⇒ <code>boolean</code>
-    * [.set(key, value, path)](#PandaDB+set) ⇒ [<code>PandaDB</code>](#PandaDB)
-    * [.get(prop, path)](#PandaDB+get) ⇒ <code>\*</code>
-    * [.has(property, path)](#PandaDB+has) ⇒ <code>boolean</code>
-    * [.ensure(prop, defaultValue)](#PandaDB+ensure) ⇒ <code>\*</code>
-    * [.delete(prop, path)](#PandaDB+delete) ⇒ <code>boolean</code>
+    * [.set(key, value, [path])](#PandaDB+set) ⇒ [<code>PandaDB</code>](#PandaDB)
+    * [.has(key, [path])](#PandaDB+has) ⇒ <code>boolean</code>
+    * [.ensure(key, defaultValue)](#PandaDB+ensure) ⇒ <code>\*</code>
+    * [.delete(key, [path])](#PandaDB+delete) ⇒ <code>boolean</code>
 
 <a name="new_PandaDB_new"></a>
 
@@ -31,7 +30,12 @@ Creates a new pandaDB
 
 **Example**  
 ```js
-const PandaDB = require('panda-db');const DB = new PandaDB({ name: "testing", dir: "./database"});
+const PandaDB = require('panda-db');
+
+const DB = new PandaDB({
+ name: "testing",
+ dir: "./database"
+});
 ```
 <a name="PandaDB+keys"></a>
 
@@ -56,7 +60,7 @@ Updates the json file. This function doesn't need to be called if the `autoSave`
 **Returns**: <code>boolean</code> - Whether the save was successful.  
 <a name="PandaDB+set"></a>
 
-### pandaDB.set(key, value, path) ⇒ [<code>PandaDB</code>](#PandaDB)
+### pandaDB.set(key, value, [path]) ⇒ [<code>PandaDB</code>](#PandaDB)
 Changes the value of the specified element
 
 **Kind**: instance method of [<code>PandaDB</code>](#PandaDB)  
@@ -65,61 +69,65 @@ Changes the value of the specified element
 | --- | --- | --- |
 | key | <code>string</code> | The key to add/change in the pandaDB |
 | value | <code>\*</code> | (new) value of the key |
-| path | <code>string</code> | Optional, the path to modify inside `key` if its value is an object |
+| [path] | <code>string</code> | The path to modify inside `key` if its value is an object |
 
 **Example**  
 ```js
-pandaDB.set('rating', 'pandaDB is easy to use!');pandaDB.set("anObject", {});pandaDB.set("anObject", "A value", "objectPath");
+pandaDB.set('rating', 'pandaDB is easy to use!');
+
+pandaDB.set("anObject", {});
+
+pandaDB.set("anObject", "A value", "objectPath");
 ```
 <a name="PandaDB+get"></a>
 
-### pandaDB.get(prop, path) ⇒ <code>\*</code>
-Gets a property from the pandaDB.
+### pandaDB.get(key, [path]) ⇒ <code>\*</code>
+Gets a key from the pandaDB.
 
 **Kind**: instance method of [<code>PandaDB</code>](#PandaDB)  
-**Returns**: <code>\*</code> - Obtained value of `prop` or undefined if it doesn't exist.  
+**Returns**: <code>\*</code> - Obtained value of `key` or undefined if it doesn't exist.  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| prop | <code>string</code> | The property to get from the pandaDB |
-| path | <code>string</code> | Optional, can be used if `prop` is an object. |
+| key | <code>string</code> | The key to get from the pandaDB. |
+| [path] | <code>string</code> | Can be used if `key` is an object. |
 
 <a name="PandaDB+has"></a>
 
-### pandaDB.has(property, path) ⇒ <code>boolean</code>
-Checks if a property exists in the pandaDB.
+### pandaDB.has(key, [path]) ⇒ <code>boolean</code>
+Checks if a key exists in the pandaDB.
 
 **Kind**: instance method of [<code>PandaDB</code>](#PandaDB)  
-**Returns**: <code>boolean</code> - Whether the property exists.  
+**Returns**: <code>boolean</code> - Whether the key exists.  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| property | <code>string</code> | The key to check |
-| path | <code>string</code> | Optional, can be used if `property` is an object. |
+| key | <code>string</code> | The key to check. |
+| [path] | <code>string</code> | Can be used if `key` is an object. |
 
 <a name="PandaDB+ensure"></a>
 
-### pandaDB.ensure(prop, defaultValue) ⇒ <code>\*</code>
-Ensures that `prop` exists.
+### pandaDB.ensure(key, defaultValue) ⇒ <code>\*</code>
+Ensures that `key` exists.
 
 **Kind**: instance method of [<code>PandaDB</code>](#PandaDB)  
-**Returns**: <code>\*</code> - `prop`'s value.  
+**Returns**: <code>\*</code> - `key`'s value.  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| prop | <code>string</code> | The property to ensure in the pandaDB |
-| defaultValue | <code>\*</code> | The value to be assigned to `prop` is it doesn't exists in the pandaDB |
+| key | <code>string</code> | The key to ensure in the pandaDB. |
+| defaultValue | <code>\*</code> | The value to be assigned to `key` is it doesn't exists in the pandaDB. |
 
 <a name="PandaDB+delete"></a>
 
-### pandaDB.delete(prop, path) ⇒ <code>boolean</code>
+### pandaDB.delete(key, [path]) ⇒ <code>boolean</code>
 Deletes a key.
 
 **Kind**: instance method of [<code>PandaDB</code>](#PandaDB)  
-**Returns**: <code>boolean</code> - Whether the delete happened.  
+**Returns**: <code>boolean</code> - Whether the delete was successful.  
 
-| Param | Type |
-| --- | --- |
-| prop | <code>string</code> | 
-| path | <code>\*</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| key | <code>string</code> | The key to delete from the pandaDB. |
+| [path] | <code>\*</code> |  |
 
