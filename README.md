@@ -1,6 +1,6 @@
 # Panda-DB
 
- **Panda-db is a very simple .json based database**
+ Panda-db is a very simple .json based database
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/PandaDriver156/panda-db?label=Repository%20Size&logo=github)
 ![npm](https://img.shields.io/npm/dt/panda-db?label=Downloads&logo=npm)
