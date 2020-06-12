@@ -5,14 +5,22 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/PandaDriver156/panda-db.git"
+    "url": "git+https://github.com/PandaDriver156/panda-db.git"
   },
-  "keywords": [
-    "database",
-    "json"
-  ],
   "bugs": {
     "url": "https://github.com/PandaDriver156/panda-db/issues"
   },
-  "author": "PandaDriver"
+  "scripts": {
+    "docs": "node ./docs/build.js"
+  },
+  "keywords": [
+    "database",
+    "db",
+    "json"
+  ],
+  "license": "MIT",
+  "author": "PandaDriver (https://github.com/PandaDriver156)",
+  "devDependencies": {
+    "jsdoc-to-markdown": "^6.0.1"
+  }
 }
