@@ -1,8 +1,12 @@
 {
   "name": "panda-db",
   "version": "0.1.5",
-  "description": "A very simple, json based database",
+  "description": "Easy and Simple json-based database",
   "main": "src/index.js",
+  "scripts": {
+    "docs": "node ./docs/build.js",
+    "lint": "eslint ./"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PandaDriver156/panda-db.git"
@@ -10,17 +14,19 @@
   "bugs": {
     "url": "https://github.com/PandaDriver156/panda-db/issues"
   },
-  "scripts": {
-    "docs": "node ./docs/build.js"
+  "devDependencies": {
+    "jsdoc-to-markdown": "^6.0.1",
+    "eslint": "^7.1.0"
   },
   "keywords": [
     "database",
+    "json",
     "db",
-    "json"
+    "json-database",
+    "js-json",
+    "data-base"
   ],
   "license": "MIT",
   "author": "PandaDriver (https://github.com/PandaDriver156)",
-  "devDependencies": {
-    "jsdoc-to-markdown": "^6.0.1"
-  }
+  "homepage": "https://github.com/PandaDriver156/panda-db/blob/master/README.md"
 }
