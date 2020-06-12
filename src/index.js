@@ -65,7 +65,7 @@ class PandaDB {
    * Changes the value of the specified element
    * @param {string} key The key to add/change in the pandaDB
    * @param {*} value (new) value of the key
-   * @param {string} path Optional, the path to modify inside `key` if its value is an object
+   * @param {string} [path] The path to modify inside `key` if its value is an object
    * @returns {PandaDB}
    * @example
    * pandaDB.set('rating', 'pandaDB is easy to use!');
@@ -80,7 +80,7 @@ class PandaDB {
     path = path ? String(path) : undefined;
     if (path) {
       path = String(path);
-      if (!data[key]) PandaDBError(`The property "${key}" does not exist in the PandaDB: ${this.options.name}`);
+      if (!data[key]) PandaDBError(`The key "${key}" does not exist in the PandaDB: ${this.options.name}`);
       data[key][path] = value;
     } else data[key] = value;
 
@@ -89,69 +89,69 @@ class PandaDB {
   }
 
   /**
-   * Gets a property from the pandaDB.
-   * @param {string} prop The property to get from the pandaDB
-   * @param {string} path Optional, can be used if `prop` is an object.
-   * @returns {*} Obtained value of `prop` or undefined if it doesn't exist.
+   * Gets a key from the pandaDB.
+   * @param {string} key The key to get from the pandaDB.
+   * @param {string} [path] Can be used if `key` is an object.
+   * @returns {*} Obtained value of `key` or undefined if it doesn't exist.
    */
-  get(prop, path) {
-    if (prop == undefined) throw new PandaDBError("Property missing");
-    prop = String(prop);
+  get(key, path) {
+    if (key == undefined) throw new PandaDBError("Key missing");
+    key = String(key);
     if (path) {
       path = String(path);
-      if (data[prop]) return data[prop][path];
-      throw new PandaDBError(`The property "${prop}" does not exist in the PandaDB: ${this.options.name}`);
+      if (data[key]) return data[key][path];
+      throw new PandaDBError(`The key "${key}" does not exist in the PandaDB: ${this.options.name}`);
     }
-    else return data[prop];
+    else return data[key];
   }
 
 
   /**
-   * Checks if a property exists in the pandaDB.
-   * @param {string} property The key to check
-   * @param {string} path Optional, can be used if `property` is an object.
-   * @return {boolean} Whether the property exists.
+   * Checks if a key exists in the pandaDB.
+   * @param {string} key The key to check.
+   * @param {string} [path] Can be used if `key` is an object.
+   * @return {boolean} Whether the key exists.
    */
-  has(property, path) {
-    if (property == undefined) throw new PandaDBError("Property missing");
-    property = String(property);
+  has(key, path) {
+    if (key == undefined) throw new PandaDBError("key missing");
+    key = String(key);
     if (path) {
       path = String(path);
-      if (data[property])
-        return data[property][path] != undefined;
-      throw new PandaDBError(`The property "${property}" does not exist in the PandaDB: ${this.options.name}`);
+      if (data[key])
+        return data[key][path] != undefined;
+      throw new PandaDBError(`The key "${key}" does not exist in the PandaDB: ${this.options.name}`);
     }
-    else return data[property] != undefined;
+    else return data[key] != undefined;
   }
 
   /**
-   * Ensures that `prop` exists.
-   * @param {string} prop The property to ensure in the pandaDB
-   * @param {*} defaultValue The value to be assigned to `prop` is it doesn't exists in the pandaDB
-   * @returns {*} `prop`'s value.
+   * Ensures that `key` exists.
+   * @param {string} key The key to ensure in the pandaDB.
+   * @param {*} defaultValue The value to be assigned to `key` is it doesn't exists in the pandaDB.
+   * @returns {*} `key`'s value.
    */
-  ensure(prop, defaultValue) {
-    if (prop == undefined || defaultValue == undefined) throw new PandaDBError("Property or value missing");
-    prop = String(prop);
-    if (data[prop] == undefined) {
-      data[prop] = defaultValue;
+  ensure(key, defaultValue) {
+    if (key == undefined || defaultValue == undefined) throw new PandaDBError("key or value missing");
+    key = String(key);
+    if (data[key] == undefined) {
+      data[key] = defaultValue;
       if (this.options.autoSave) this.save();
     }
-    return data[prop];
+    return data[key];
   }
 
   /**
    * Deletes a key.
-   * @param {string} prop 
-   * @param {*} path 
-   * @returns {boolean} Whether the delete happened.
+   * @param {string} key The key to delete from the pandaDB.
+   * @param {*} [path]
+   * @returns {boolean} Whether the delete was successful.
    */
-  delete(prop, path) {
-    if (!prop) throw new PandaDBError("Property missing");
-    prop = String(prop);
+  delete(key, path) {
+    if (!key) throw new PandaDBError("key missing");
+    key = String(key);
     path = path ? String(path) : null;
-    if (data[prop]) {
-      const deleted = delete data[prop];
+    if (data[key]) {
+      const deleted = delete data[key];
       if (this.options.autoSave) this.save();
       return deleted;
     }
