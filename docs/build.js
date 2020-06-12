@@ -1,4 +1,3 @@
-
 console.log("Building docs...");
 
 const jsdoc2md = require('jsdoc-to-markdown');
@@ -10,6 +9,5 @@ jsdoc2md.render({
     files: './src/index.js'
 }).then(data => {
     fs.writeFileSync(path, data);
+    console.log(`Successfully saved docs to ${path}`);
 });
-
-console.log(`Successfully saved docs to ${path}`);
