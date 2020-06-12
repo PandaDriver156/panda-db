@@ -11,6 +11,7 @@ A very simple, json based database
     * [.size](#PandaDB+size) ⇒ <code>number</code>
     * [.save()](#PandaDB+save) ⇒ <code>boolean</code>
     * [.set(key, value, [path])](#PandaDB+set) ⇒ [<code>PandaDB</code>](#PandaDB)
+    * [.get(key, [path])](#PandaDB+get) ⇒ <code>\*</code>
     * [.has(key, [path])](#PandaDB+has) ⇒ <code>boolean</code>
     * [.ensure(key, defaultValue)](#PandaDB+ensure) ⇒ <code>\*</code>
     * [.delete(key, [path])](#PandaDB+delete) ⇒ <code>boolean</code>
@@ -30,12 +31,7 @@ Creates a new pandaDB
 
 **Example**  
 ```js
-const PandaDB = require('panda-db');
-
-const DB = new PandaDB({
- name: "testing",
- dir: "./database"
-});
+const PandaDB = require('panda-db');const DB = new PandaDB({ name: "testing", dir: "./database"});
 ```
 <a name="PandaDB+keys"></a>
 
@@ -73,11 +69,7 @@ Changes the value of the specified element
 
 **Example**  
 ```js
-pandaDB.set('rating', 'pandaDB is easy to use!');
-
-pandaDB.set("anObject", {});
-
-pandaDB.set("anObject", "A value", "objectPath");
+pandaDB.set('rating', 'pandaDB is easy to use!');pandaDB.set("anObject", {});pandaDB.set("anObject", "A value", "objectPath");
 ```
 <a name="PandaDB+get"></a>
 
